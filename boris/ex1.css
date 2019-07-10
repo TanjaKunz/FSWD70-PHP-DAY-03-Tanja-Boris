@@ -1,0 +1,27 @@
+.hero {
+	object-fit: contain;
+	width: 100%;
+}
+
+p {
+	font-size: 20px;
+}
+
+.fas {
+	margin-left: 40%;
+	font-size: 50px;
+}
+
+.signin {
+	left:  100px;
+}
+
+ .manageUser {
+           width : 50%;
+           margin: auto;
+       }
+
+        table {
+           width: 100%;
+            margin-top: 20px;
+       }
