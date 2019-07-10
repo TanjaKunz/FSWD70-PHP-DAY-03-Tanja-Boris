@@ -25,6 +25,10 @@ $passw = trim($_POST['passw']);
 $passw = strip_tags($passw);
 $passw = htmlspecialchars($passw);
 
+$pic = trim($_POST['pic']);
+$pic = strip_tags($pic);
+$pic = htmlspecialchars($pic);
+
 	if (empty($name)) {
 		$error = true ;
 		$nameErr = "Please enter your full name.";
@@ -62,7 +66,7 @@ $passw = htmlspecialchars($passw);
 
  
 	if( !$error ) {  
-		$query = "INSERT INTO users(userName,userEmail,userPass) VALUES('$name','$email','$password')";
+		$query = "INSERT INTO users(userName,userEmail,userPass, userImg) VALUES('$name','$email','$password', '$pic')";
 		$res = mysqli_query($conn, $query);
 
 		if ($res) {
@@ -90,20 +94,30 @@ $passw = htmlspecialchars($passw);
 	<!-------- Font Awesome -------->
   	<script src="https://kit.fontawesome.com/649b84c193.js"></script>
 
+  	<!-- Custom Stylesheet -->
+  	<link rel="stylesheet" href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css">
+
   	
 </head>
 <body>
-	<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" >
+	<form class="form-signin" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" >
+		<h1 class="h3 mb-3 font-weight-normal">Please register</h1>
 
-		<input type ="text" name="name" class ="form-control" placeholder ="Enter Name" maxlength="50" value="<?php echo $name ?>"  />
-	    <span class = "text-danger"> <?php echo $nameErr; ?> </span >       
+		<label>Name</label>
+		<input type="text" name="name"  class="form-control" placeholder="Enter Name" maxlength="50" value="<?php echo $name; ?>" autofocus>
+		<span class="text-danger"><?php echo $nameErr; ?></span>
 
-	    <input   type = "email" name="email" class="form-control" placeholder="Enter Your Email" maxlength="40" value="<?php echo $email ?>" />    
-	    <span   class="text-danger" > <?php   echo  $emailErr; ?> </span >  
-        
-	    <input type="password" name="passw" class="form-control" placeholder="Enter Password" maxlength="15"  /> 
-	    <span class="text-danger" > <?php   echo  $passErr; ?> </span >      
-	    <hr />
+		<label>Email</label>
+		<input type="email" name="email" class="form-control" placeholder="Enter Your Email"  maxlength="40" value="<?php echo $email; ?>" autofocus>
+		<span class="text-danger"><?php echo $emailErr; ?></span>
+
+		<label>Password</label>
+		<input type="password" name="passw" id="inputPassword" class="form-control" placeholder="Enter Password" maxlength="15">
+		<span class="text-danger"><?php echo $passErr; ?></span>
+
+		<label>URL to your picture</label>
+		<input type="pic" name="pic" class="form-control" placeholder="URL" maxlength="15">
+		<span class="text-danger"><?php echo $passErr; ?></span><br>	    
 	          
 	    <button type="submit" class="btn btn-block btn-primary" name="btn-signup">Sign Up</button >
 	    <hr/>
